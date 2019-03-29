@@ -1,0 +1,127 @@
+/**
+  This are Bootstrap spacer helpers, use if you wan't
+
+  Original author https://gist.github.com/williamabbott/47767c82a7b62f4fe0d931b94a9b489b
+  https://getbootstrap.com/docs/4.0/utilities/spacing/
+ */
+$spacer: 1rem !default;
+$small: 576px;
+
+$spacing-spacer: $spacer !default;
+$spacing-spacers: () !default;
+$spacing-spacers: map-merge((
+  0: 0,
+  1: ($spacing-spacer * .25),
+  2: ($spacing-spacer * .5),
+  3: $spacing-spacer,
+  4: ($spacing-spacer * 1.5),
+  5: ($spacing-spacer * 3)
+), $spacing-spacers);
+
+$spacing-grid-breakpoints: (
+  all: 0,
+  mobile: $small, // Added because I felt there needs to be more control for smaller devices
+  tablet: $tablet,
+  desktop: $desktop,
+  widescreen: $widescreen,
+  hd: $fullhd
+) !default;
+
+@function breakpoint-min($name, $breakpoints: $spacing-grid-breakpoints) {
+  $min: map-get($breakpoints, $name);
+  @return if($min != 0, $min, null);
+}
+
+@mixin media-breakpoint-up($name, $breakpoints: $spacing-grid-breakpoints) {
+  $min: breakpoint-min($name, $breakpoints);
+  @if $min {
+    @media (min-width: $min) {
+      @content;
+    }
+  } @else {
+    @content;
+  }
+}
+
+@function breakpoint-infix($name, $breakpoints: $spacing-grid-breakpoints) {
+  @return if(breakpoint-min($name, $breakpoints) == null, "", "-#{$name}");
+}
+
+@function breakpoint-next($name, $breakpoints: $spacing-grid-breakpoints, $breakpoint-names: map-keys($breakpoints)) {
+  $n: index($breakpoint-names, $name);
+  @return if($n < length($breakpoint-names), nth($breakpoint-names, $n + 1), null);
+}
+
+@each $breakpoint in map-keys($spacing-grid-breakpoints) {
+  @include media-breakpoint-up($breakpoint) {
+    $infix: breakpoint-infix($breakpoint, $spacing-grid-breakpoints);
+
+    @each $prop, $abbrev in (margin: m, padding: p) {
+      @each $size, $length in $spacing-spacers {
+
+        .has-#{$abbrev}#{$infix}-#{$size} { #{$prop}: $length !important; }
+        .has-#{$abbrev}t#{$infix}-#{$size},
+        .has-#{$abbrev}y#{$infix}-#{$size} {
+          #{$prop}-top: $length !important;
+        }
+        .has-#{$abbrev}r#{$infix}-#{$size},
+        .has-#{$abbrev}x#{$infix}-#{$size} {
+          #{$prop}-right: $length !important;
+        }
+        .has-#{$abbrev}b#{$infix}-#{$size},
+        .has-#{$abbrev}y#{$infix}-#{$size} {
+          #{$prop}-bottom: $length !important;
+        }
+        .has-#{$abbrev}l#{$infix}-#{$size},
+        .has-#{$abbrev}x#{$infix}-#{$size} {
+          #{$prop}-left: $length !important;
+        }
+      }
+    }
+
+    // Some special margin utils
+    .has-m#{$infix}-auto { margin: auto !important; }
+    .has-mt#{$infix}-auto,
+    .has-my#{$infix}-auto {
+      margin-top: auto !important;
+    }
+    .has-mr#{$infix}-auto,
+    .has-mx#{$infix}-auto {
+      margin-right: auto !important;
+    }
+    .has-mb#{$infix}-auto,
+    .has-my#{$infix}-auto {
+      margin-bottom: auto !important;
+    }
+    .has-ml#{$infix}-auto,
+    .has-mx#{$infix}-auto {
+      margin-left: auto !important;
+    }
+  }
+}
+
+/**
+ * Text
+ */
+@each $breakpoint in map-keys($spacing-grid-breakpoints) {
+  @include media-breakpoint-up($breakpoint) {
+    $infix: breakpoint-infix($breakpoint, $spacing-grid-breakpoints);
+
+    .has-text#{$infix}-left   { text-align: left !important; }
+    .has-text#{$infix}-right  { text-align: right !important; }
+    .has-text#{$infix}-center { text-align: center !important; }
+  }
+}
+
+/**
+ * Float
+ */
+@each $breakpoint in map-keys($spacing-grid-breakpoints) {
+  @include media-breakpoint-up($breakpoint) {
+    $infix: breakpoint-infix($breakpoint, $spacing-grid-breakpoints);
+
+    .has-float#{$infix}-left  { float: left !important; }
+    .has-float#{$infix}-right { float: right !important; }
+    .has-float#{$infix}-none  { float: none !important; }
+  }
+}
