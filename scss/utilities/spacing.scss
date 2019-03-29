@@ -4,19 +4,31 @@
   Original author https://gist.github.com/williamabbott/47767c82a7b62f4fe0d931b94a9b489b
   https://getbootstrap.com/docs/4.0/utilities/spacing/
  */
+
 $spacer: 1rem !default;
 $small: 576px;
 
+// multipliers for spacers
+// multipliers for spacers
+$size-multiplier-0: 0 !default;
+$size-multiplier-1: .25 !default;
+$size-multiplier-2: .5 !default;
+$size-multiplier-3: 1 !default;
+$size-multiplier-4: 1.5 !default;
+$size-multiplier-5: 3 !default;
+$size-multiplier-6: 6 !default;
+
 $spacing-spacer: $spacer !default;
-$spacing-spacers: () !default;
-$spacing-spacers: map-merge((
-  0: 0,
-  1: ($spacing-spacer * .25),
-  2: ($spacing-spacer * .5),
-  3: $spacing-spacer,
-  4: ($spacing-spacer * 1.5),
-  5: ($spacing-spacer * 3)
-), $spacing-spacers);
+$spacing-sizes: () !default;
+$spacing-sizes: map-merge((
+  0: $spacing-spacer * $size-multiplier-0,
+  1: ($spacing-spacer * $size-multiplier-1),
+  2: ($spacing-spacer * $size-multiplier-2),
+  3: $spacing-spacer * $size-multiplier-3,
+  4: ($spacing-spacer * $size-multiplier-4),
+  5: ($spacing-spacer * $size-multiplier-5),
+  6: ($spacing-spacer * $size-multiplier-6)
+), $spacing-sizes);
 
 $spacing-grid-breakpoints: (
   all: 0,
@@ -57,7 +69,7 @@ $spacing-grid-breakpoints: (
     $infix: breakpoint-infix($breakpoint, $spacing-grid-breakpoints);
 
     @each $prop, $abbrev in (margin: m, padding: p) {
-      @each $size, $length in $spacing-spacers {
+      @each $size, $length in $spacing-sizes {
 
         .has-#{$abbrev}#{$infix}-#{$size} { #{$prop}: $length !important; }
         .has-#{$abbrev}t#{$infix}-#{$size},
