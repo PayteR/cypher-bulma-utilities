@@ -1,0 +1,8 @@
+
+.notification {
+  &.is-browsersupport {
+    @supports (display: grid) {
+      display: none;
+    }
+  }
+}
