@@ -32,6 +32,5 @@ $privacy-policy-padding: $spacer !default;
 
   @include tablet {
     grid-template-columns: 1fr max-content;
-    align-items: center;
   }
 }
