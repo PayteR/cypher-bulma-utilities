@@ -115,15 +115,16 @@ $spacing-grid-breakpoints: (
 /**
  * Text
  */
-@each $breakpoint in map-keys($spacing-grid-breakpoints) {
-  @include media-breakpoint-up($breakpoint) {
-    $infix: breakpoint-infix($breakpoint, $spacing-grid-breakpoints);
-
-    .has-text#{$infix}-left   { text-align: left !important; }
-    .has-text#{$infix}-right  { text-align: right !important; }
-    .has-text#{$infix}-center { text-align: center !important; }
-  }
-}
+// Because is in helpers? need to make sure
+//@each $breakpoint in map-keys($spacing-grid-breakpoints) {
+//  @include media-breakpoint-up($breakpoint) {
+//    $infix: breakpoint-infix($breakpoint, $spacing-grid-breakpoints);
+//
+//    .has-text#{$infix}-left   { text-align: left !important; }
+//    .has-text#{$infix}-right  { text-align: right !important; }
+//    .has-text#{$infix}-center { text-align: center !important; }
+//  }
+//}
 
 /**
  * Float

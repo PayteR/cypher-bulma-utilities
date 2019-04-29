@@ -1,0 +1,46 @@
+
+$accordion-item-border: 1px solid $border !default;
+
+$accordion-heading-background-color: $background !default;
+$accordion-heading-color: $text-strong !default;
+$accordion-heading-line-height: 1.25 !default;
+$accordion-heading-padding: 0.5em 0.75em !default;
+$accordion-heading-radius: $radius !default;
+$accordion-heading-size: 1.25em !default;
+$accordion-heading-weight: $weight-light !default;
+
+$accordion-body-color: $text-strong !default;
+$accordion-body-padding: 0.5em 0.75em !default;
+
+$accordion-icon-color: $text-light !default;
+
+
+.accordion {
+
+}
+
+.accordion-body,
+.accordion-heading {
+  border-bottom: $accordion-item-border;
+  border-left: $accordion-item-border;
+  border-right: $accordion-item-border;
+
+  &:first-child {
+    border-top: $accordion-item-border;
+  }
+}
+
+.accordion-heading {
+  background-color: $accordion-heading-background-color;
+  border-radius: $accordion-heading-radius $accordion-heading-radius 0 0;
+  color: $accordion-heading-color;
+  font-size: $accordion-heading-size;
+  font-weight: $accordion-heading-weight;
+  line-height: $accordion-heading-line-height;
+  padding: $accordion-heading-padding;
+}
+
+.accordion-body {
+  color: $accordion-body-color;
+  padding: $accordion-body-padding;
+}

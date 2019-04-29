@@ -1,0 +1,30 @@
+
+.has-background-image {
+  overflow: hidden;
+
+  .image {
+    height: 100%;
+    width: 100%;
+    position: absolute;
+    z-index: 0;
+    top: 0;
+    bottom: 0;
+    left: 0;
+    right: 0;
+    object-fit: cover;
+  }
+}
+.image {
+  //&.is-fit-cover {
+  //  object-fit: cover;
+  //}
+  &.is-fit-contain {
+    object-fit: contain;
+  }
+  &.is-fit-fill {
+    object-fit: fill;
+  }
+  &.is-fit-scale-down {
+    object-fit: scale-down;
+  }
+}
