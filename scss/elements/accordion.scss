@@ -43,4 +43,5 @@ $accordion-icon-color: $text-light !default;
 .accordion-body {
   color: $accordion-body-color;
   padding: $accordion-body-padding;
+  display: none;
 }
