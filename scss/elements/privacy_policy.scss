@@ -29,6 +29,7 @@ $privacy-policy-padding: $spacer !default;
 .privacy_policy-container {
   display: grid;
   grid-template-columns: 1fr;
+  grid-gap: 1rem;
 
   @include tablet {
     grid-template-columns: 1fr max-content;
